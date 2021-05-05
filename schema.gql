@@ -4,8 +4,7 @@
 
 type User {
   id: ID!
-  email: String!
-  name: String
+  auth0_user_id: String!
 }
 
 type Query {
