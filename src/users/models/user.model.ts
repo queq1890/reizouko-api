@@ -8,4 +8,7 @@ export class User implements PrismaUser {
 
   @Field()
   auth0_user_id!: string;
+
+  @Field()
+  name!: string;
 }

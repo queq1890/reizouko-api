@@ -5,8 +5,9 @@
 type User {
   id: ID!
   auth0_user_id: String!
+  name: String!
 }
 
 type Query {
-  user(id: String!): User!
+  user(auth0_user_id: String!): User!
 }

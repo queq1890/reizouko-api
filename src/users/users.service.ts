@@ -19,4 +19,15 @@ export class UsersService {
 
     return user;
   }
+
+  async getByAuth0UserId(id: string) {
+    // TODO: unique にする
+    const user = await this.prisma.user.findFirst({
+      where: {
+        auth0_user_id: id,
+      },
+    });
+
+    return user;
+  }
 }
