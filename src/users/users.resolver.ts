@@ -17,9 +17,7 @@ export class UsersResolver {
 
   @Query(() => User)
   @UseGuards(GqlAuthGuard)
-  async user(
-    @Args('auth0_user_id', { type: () => String }) auth0_user_id: string,
-  ) {
-    return this.usersService.getByAuth0UserId(auth0_user_id);
+  async user(@Args('auth0UserId', { type: () => String }) auth0UserId: string) {
+    return this.usersService.getByAuth0UserId(auth0UserId);
   }
 }
