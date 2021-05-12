@@ -12,6 +12,6 @@ generator client {
 
 model User {
   id            String @id @default(uuid())
-  auth0_user_id String @default("")
+  auth0_user_id String @unique
   name          String @default("")
 }
