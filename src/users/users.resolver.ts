@@ -13,7 +13,6 @@ export class UsersResolver {
   async user(
     @Args('auth0_user_id', { type: () => String }) auth0_user_id: string,
   ) {
-    console.log('called');
     return this.usersService.getByAuth0UserId(auth0_user_id);
   }
 }
