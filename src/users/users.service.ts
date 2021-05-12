@@ -20,10 +20,10 @@ export class UsersService {
     return user;
   }
 
-  async getByAuth0UserId(id: string) {
+  async getByAuth0UserId(auth0UserId: string) {
     const user = await this.prisma.user.findUnique({
       where: {
-        auth0_user_id: id,
+        auth0UserId,
       },
     });
 
