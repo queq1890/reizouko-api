@@ -7,5 +7,14 @@ export class User implements PrismaUser {
   id!: string;
 
   @Field()
-  auth0_user_id!: string;
+  auth0UserId!: string;
+
+  @Field()
+  name!: string;
+
+  @Field()
+  createdAt!: Date;
+
+  @Field()
+  updatedAt!: Date;
 }

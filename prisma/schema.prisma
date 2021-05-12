@@ -11,7 +11,66 @@ generator client {
 }
 
 model User {
-  id            String @id @default(uuid())
-  auth0_user_id String @default("")
-  name          String @default("")
+  id          String   @id @default(uuid())
+  auth0UserId String   @unique
+  name        String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  fridge      Fridge?
+}
+
+model Fridge {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  Food      Food[]
+}
+
+model Food {
+  id             String              @id @default(uuid())
+  fridge         Fridge              @relation(fields: [fridgeId], references: [id])
+  fridgeId       String
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @default(now()) @updatedAt
+  purchaseDate   DateTime
+  expirationDate DateTime?
+  kinds          KindsOnFoods[]
+  categories     CategoriesOnFoods[]
+}
+
+model Kind {
+  id        String         @id @default(uuid())
+  name      String
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @default(now()) @updatedAt
+  foods     KindsOnFoods[]
+
+}
+
+model Category {
+  id        String              @id @default(uuid())
+  name      String
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @default(now()) @updatedAt
+  foods     CategoriesOnFoods[]
+}
+
+model KindsOnFoods {
+  kind   Kind   @relation(fields: [kindId], references: [id])
+  kindId String
+  food   Food   @relation(fields: [foodId], references: [id])
+  foodId String
+
+  @@id([foodId, kindId])
+}
+
+model CategoriesOnFoods {
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+  food       Food     @relation(fields: [foodId], references: [id])
+  foodId     String
+
+  @@id([foodId, categoryId])
 }
