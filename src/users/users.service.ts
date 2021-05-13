@@ -30,8 +30,16 @@ export class UsersService {
           include: {
             foods: {
               include: {
-                kinds: true,
-                categories: true,
+                kinds: {
+                  include: {
+                    kind: true,
+                  },
+                },
+                categories: {
+                  include: {
+                    category: true,
+                  },
+                },
               },
             },
           },

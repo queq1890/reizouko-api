@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Food as PrismaFood, FoodStatus } from '@prisma/client';
-import { Category } from 'src/categories/models/category.model';
-import { Kind } from 'src/kinds/models/kind.model';
+import { CategoryOnFood } from './category-on-food.model';
+import { KindOnFood } from './kind-on-food.model';
 
 @ObjectType()
 export class Food implements PrismaFood {
@@ -20,11 +20,11 @@ export class Food implements PrismaFood {
   @Field()
   status!: FoodStatus;
 
-  @Field(() => [Category])
-  categories!: Category[];
+  @Field(() => [CategoryOnFood])
+  categories!: CategoryOnFood[];
 
-  @Field(() => [Kind])
-  kinds!: Kind[];
+  @Field(() => [KindOnFood])
+  kinds!: KindOnFood[];
 
   @Field()
   createdAt!: Date;
