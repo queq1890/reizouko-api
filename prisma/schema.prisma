@@ -25,7 +25,7 @@ model Fridge {
   userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
-  Food      Food[]
+  foods     Food[]
 }
 
 model Food {

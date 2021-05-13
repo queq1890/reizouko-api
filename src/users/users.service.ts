@@ -25,6 +25,18 @@ export class UsersService {
       where: {
         auth0UserId,
       },
+      include: {
+        fridge: {
+          include: {
+            foods: {
+              include: {
+                kinds: true,
+                categories: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     return user;
