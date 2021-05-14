@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { User as PrismaUser } from '@prisma/client';
+import { Fridge } from 'src/fridges/models/fridge.model';
 
 @ObjectType()
 export class User implements PrismaUser {
@@ -17,4 +18,7 @@ export class User implements PrismaUser {
 
   @Field()
   updatedAt!: Date;
+
+  @Field(() => Fridge, { nullable: true })
+  fridge?: Fridge;
 }
